@@ -1,10 +1,15 @@
-# railway.yml
+build:
+  builder: "nixpacks"
+  nixpacksPlan:
+    providers:
+      python: "poetry"
+
 services:
   - name: compressor-bot
     build:
       dockerfile: Dockerfile
     deploy:
-      startCommand: "python3 main.py"
+      startCommand: "python3 start.py"
       restartPolicyType: "ALWAYS"
     env:
       - key: APP_ID
@@ -13,8 +18,12 @@ services:
         description: "Telegram API Hash from my.telegram.org"
       - key: BOT_TOKEN
         description: "Telegram Bot Token from @BotFather"
-      - key: STRING
-        description: "Optional Telegram session string (leave empty if not used)"
       - key: LOG_CHANNEL
-        description: "Optional Telegram channel ID for logs (leave empty if not used)"
-    port: 8080
+        description: "Telegram channel ID for logs"
+      - key: OWNER_ID
+        description: "Bot owner's Telegram ID"
+    fs:
+      size: "1GB"
+    resources:
+      cpu: 2
+      memory: 1024
