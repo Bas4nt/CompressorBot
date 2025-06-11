@@ -8,5 +8,5 @@ env:
   - APP_ID
   - API_HASH
   - BOT_TOKEN
-  - STRING
-  - LOG_CHANNEL
+ # - STRING
+ # - LOG_CHANNEL
