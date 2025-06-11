@@ -13,13 +13,25 @@
 #    License can be found in < https://github.com/1Danish-00/CompressorBot/blob/main/License> .
 
 from . import *
+# config.py - Updated with robust error handling
+from decouple import config
+from . import LOGS
 
 try:
+    # Required variables
     APP_ID = config("APP_ID", cast=int)
     API_HASH = config("API_HASH")
     BOT_TOKEN = config("BOT_TOKEN")
+    
+    # Optional variables with defaults
     OWNER = config("OWNER_ID", default=1322549723, cast=int)
-    LOG = config("LOG_CHANNEL", default=0, cast=int)  # 0 disables logging
+    
+    # LOG_CHANNEL handling (force negative if provided)
+    LOG = config("LOG_CHANNEL", default=0, cast=int)
+    if LOG > 0:  # Convert to negative if positive ID provided
+        LOG = -abs(LOG)
+        
 except Exception as e:
-    LOGS.critical(f"Config error: {e}")
+    LOGS.critical(f"❌ Config Error: {str(e)}")
+    LOGS.info("Bot is shutting down...")
     exit(1)
