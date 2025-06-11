@@ -19,9 +19,7 @@ try:
     API_HASH = config("API_HASH")
     BOT_TOKEN = config("BOT_TOKEN")
     OWNER = config("OWNER_ID", default=1322549723, cast=int)
-    LOG = config("LOG_CHANNEL", default=0, cast=int)  # Default to 0 if not set
+    LOG = config("LOG_CHANNEL", default=0, cast=int)  # 0 disables logging
 except Exception as e:
-    LOGS.info("Environment vars Missing")
-    LOGS.info("something went wrong")
-    LOGS.info(str(e))
+    LOGS.critical(f"Config error: {e}")
     exit(1)
