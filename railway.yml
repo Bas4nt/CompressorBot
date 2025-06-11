@@ -2,11 +2,26 @@
 build:
   dockerfile: Dockerfile
 deploy:
-  startCommand: "python3 start.py"
+  startCommand: "./start.sh"  # Changed to use a startup script
   restartPolicy: ALWAYS
+
 env:
   - APP_ID
   - API_HASH
   - BOT_TOKEN
- # - STRING
- # - LOG_CHANNEL
+  - OWNER_ID
+  - LOG_CHANNEL  # Optional (set to 0 if not used)
+
+# Required for FFmpeg/Mediainfo
+packages:
+  - ffmpeg
+  - mediainfo
+
+# Ensure proper file permissions
+volumes:
+  - name: data
+    path: /app/downloads
+    size: 1GB
+  - name: encodes
+    path: /app/encode
+    size: 1GB
