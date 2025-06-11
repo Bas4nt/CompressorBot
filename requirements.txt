@@ -4,4 +4,5 @@ pyaesni
 https://github.com/1Danish-00/Telethon/archive/master.zip
 html_telegraph_poster
 requests
-
+lxml==4.9.3  # Explicitly specify a compatible version
+lxml-html-clean==0.1.1  # New required package
