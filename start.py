@@ -14,6 +14,10 @@
 
 
 from helper._get import *
+# Check if required directories exist
+for directory in ["downloads", "encode", "thumb"]:
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 LOGS.info("Starting...")
 
