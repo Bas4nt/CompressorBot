@@ -4,3 +4,12 @@ pyaesni
 https://github.com/1Danish-00/Telethon/archive/master.zip
 html_telegraph_poster
 requests
+
+aiohttp>=3.8.0
+python-decouple>=3.6
+pyaesni>=1.0.0
+git+https://github.com/1Danish-00/Telethon@master
+html_telegraph_poster>=0.4.0
+requests>=2.28.0
+psutil>=5.9.0
+ffmpeg-python>=0.2.0
